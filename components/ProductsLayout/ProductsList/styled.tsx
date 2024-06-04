@@ -26,8 +26,8 @@ export const ProductsListContent = styled.div`
   }
 `;
 
-export const ViewMoreButton = styled.div`
-  display: flex;
+export const ViewMoreButton = styled.div<{show: boolean}>`
+  display: ${({ show }) => show ? "flex" : "none"};;
   cursor: pointer;
   align-items: center;
   justify-content: center;

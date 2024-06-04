@@ -1,14 +1,3 @@
-/*
-const { getProducts, products } = useGetProducts();
-
-  console.log(products);
-
-  useEffect(() => {
-    getProducts({ Page: 1, Limit: 12, CategoryId: 21 });
-  }, []);
-
-*/
-
 import { useGetProducts } from "@/lib/useGetProducts";
 import { Product } from "@/types/products";
 import {
@@ -20,10 +9,10 @@ import {
   useEffect,
   useState,
 } from "react";
+import { useRouter } from "next/router";
 
 interface ProductsContext {
   // filters: Filter[];
-  page: number;
   limit: number;
   products: Product[];
   productsLoading: boolean;
@@ -36,7 +25,6 @@ interface ProductsContext {
 
 export const ProductsContext = createContext<ProductsContext>({
   // filters: [],
-  page: 1,
   limit: 1,
   products: [],
   productsLoading: false,
@@ -51,30 +39,24 @@ export function ProductsProvider({ children }: PropsWithChildren) {
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(12);
   const [categoryId, setCategoryId] = useState<number>(21);
-
-  // const searchParams = useSearchParams();
-  // const minPrice = Number(searchParams.get("MinPrice"));
-  // const maxPrice = Number(searchParams.get("MaxPrice"));
-
-  // const { products, productsLoading, getProducts} = useGetProducts({
-  //   Page: page,
-  //   Limit: limit,
-  //   CategoryId: categoryId,
-  // });
   const { products, productsLoading, getProducts, totalProducts } =
     useGetProducts();
 
-  console.log(totalProducts);
+  const router = useRouter();
+  const { MinPrice, MaxPrice } = router.query;
 
   useEffect(() => {
-    getProducts({
-      Page: page,
-      Limit: limit,
-      CategoryId: categoryId,
-      // MinPrice: minPrice || 0,
-      // MaxPrice: maxPrice || 22020,
-    });
-  }, []);
+    if (router.isReady)
+      getProducts({
+        Page: page,
+        Limit: limit,
+        CategoryId: categoryId,
+        MinPrice: Number(MinPrice) || 0,
+        MaxPrice: Number(MaxPrice) || 22020,
+        // MinPrice: minPrice || 0,
+        // MaxPrice: maxPrice || 22020,
+      });
+  }, [router]);
 
   useEffect(() => {
     if (page !== 1)
@@ -86,7 +68,6 @@ export function ProductsProvider({ children }: PropsWithChildren) {
       value={{
         products,
         productsLoading,
-        page,
         setPage,
         limit,
         setLimit,
