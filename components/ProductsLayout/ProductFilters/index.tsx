@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container } from "./styled";
 import { useRouter } from "next/router";
 
-export default function index() {
+export default function ProductFilters() {
   const router = useRouter();
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(20200);
@@ -10,7 +10,7 @@ export default function index() {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (minPrice) {
-      router.push({
+      router.replace({
         pathname: "/",
         query: { MinPrice: minPrice, MaxPrice: maxPrice },
       });

@@ -5,12 +5,22 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 0 0 40px 0;
 
-  & > div {
-    display: flex;
-    width: 100%;
+  hr {
+    border: 1px solid ${({ theme }) => theme.colors.gray};
   }
 
   @media (min-width: 1280px) {
     max-width: 1280px;
+  }
+`;
+
+export const Content = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+export const FiltersContainer = styled.div`
+  @media (max-width: 1024px) {
+    display: none;
   }
 `;

@@ -19,20 +19,15 @@ interface ProductsContext {
   setPage: Dispatch<SetStateAction<number>>;
   setLimit: Dispatch<SetStateAction<number>>;
   totalProducts: number;
-  // minPrice: number;
-  // maxPrice: number;
 }
 
 export const ProductsContext = createContext<ProductsContext>({
-  // filters: [],
   limit: 1,
   products: [],
   productsLoading: false,
   setPage: () => {},
   setLimit: () => {},
   totalProducts: 0,
-  // minPrice: 0,
-  // maxPrice: 0,
 });
 
 export function ProductsProvider({ children }: PropsWithChildren) {
@@ -43,7 +38,7 @@ export function ProductsProvider({ children }: PropsWithChildren) {
     useGetProducts();
 
   const router = useRouter();
-  const { MinPrice, MaxPrice } = router.query;
+  const { MinPrice, MaxPrice, PriceAsc, NameAsc } = router.query;
 
   useEffect(() => {
     if (router.isReady)
@@ -53,14 +48,25 @@ export function ProductsProvider({ children }: PropsWithChildren) {
         CategoryId: categoryId,
         MinPrice: Number(MinPrice) || 0,
         MaxPrice: Number(MaxPrice) || 22020,
-        // MinPrice: minPrice || 0,
-        // MaxPrice: maxPrice || 22020,
+        PriceAsc: PriceAsc || undefined,
+        NameAsc: NameAsc || undefined,
       });
   }, [router]);
 
   useEffect(() => {
     if (page !== 1)
-      getProducts({ Page: page, Limit: limit, CategoryId: categoryId }, true);
+      getProducts(
+        {
+          Page: page,
+          Limit: limit,
+          CategoryId: categoryId,
+          MinPrice: Number(MinPrice) || 0,
+          MaxPrice: Number(MaxPrice) || 22020,
+          PriceAsc: PriceAsc || undefined,
+          NameAsc: NameAsc || undefined,
+        },
+        true
+      );
   }, [page]);
 
   return (
