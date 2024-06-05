@@ -1,4 +1,4 @@
-import { useGetProducts } from "@/lib/useGetProducts";
+import { useGetProducts } from "@/lib/hooks/useGetProducts";
 import { Product } from "@/types/products";
 import {
   createContext,

@@ -31,7 +31,7 @@ export const NavSearchInput = styled.input`
   border: solid 1px ${({ theme }) => theme.colors.orangeMain};
   border-radius: 1rem;
   font-size: 0.875rem;
-  font-family: "Firago", sans-serif;
+  font-family: "FiraGO", sans-serif;
   background-color: ${({ theme }) => theme.colors.themeBg};
   color: ${({ theme }) => theme.colors.blackMain};
   transition: background-color 0.3s ease-in-out;

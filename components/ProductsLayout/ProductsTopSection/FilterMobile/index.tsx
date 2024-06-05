@@ -1,15 +1,21 @@
 import React, { useState } from "react";
+import { FilterButton, FilterContainer } from "./styled";
+import FilterModal from "./FilterModal";
 import ProductFilters from "../../ProductFilters";
-import { FilterButton, FilterContainer, FilterModal } from "./styled";
-export default function FilterMobile() {
+import FilterIcon from "@/assets/images/setting-5.png";
+export default function FilterMobileModal() {
   const [isFilterModal, setIsFilterModal] = useState(false);
 
-  console.log(isFilterModal);
-
+  const onClose = () => {
+    setIsFilterModal(false);
+  };
   return (
     <FilterContainer>
-      <FilterButton onClick={() => setIsFilterModal(true)}>ფილტრი</FilterButton>
-      <FilterModal isOpen={isFilterModal}>
+      <FilterButton onClick={() => setIsFilterModal(true)}>
+        <img src={FilterIcon.src} />
+        <p>ფილტრი</p>
+      </FilterButton>
+      <FilterModal isOpen={isFilterModal} onClose={onClose}>
         <ProductFilters />
       </FilterModal>
     </FilterContainer>

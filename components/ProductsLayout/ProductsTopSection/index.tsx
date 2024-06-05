@@ -38,7 +38,7 @@ export default function ProductsTopSection() {
           <LayoutOption src={RowsIcon.src} />
         </DesktopSortContainer>
       </DesktopSection>
-      <hr className="line" />
+      <hr />
       {/* mobile section here */}
       <MobileSection>
         <MobileSecionContent>

@@ -33,7 +33,7 @@ export const CategoryInfo = styled.div`
 `;
 
 export const CategoryTitle = styled.h2`
-  font-family: "Firago", sans-serif;
+  font-family: "FiraGO", sans-serif;
   font-weight: bold;
   font-size: 1rem;
   line-height: 19px;
@@ -69,4 +69,7 @@ export const MobileSection = styled.div`
 
 export const MobileSecionContent = styled.div`
   margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;

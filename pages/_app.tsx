@@ -19,6 +19,10 @@ const theme: DefaultTheme = {
 };
 
 export default function App({ Component, pageProps }: AppProps) {
+  console.log("FILTERS", pageProps.filters);
+  console.log("min price: ", pageProps.defaultMinPrice);
+  console.log("max price", pageProps.defaultMaxPrice);
+
   return (
     <>
       <ThemeProvider theme={theme}>

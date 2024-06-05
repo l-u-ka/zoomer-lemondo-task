@@ -34,7 +34,7 @@ export const NavButtonIcon = styled.img`
 `;
 
 export const NavButtonText = styled.p<{ type: ButtonEnum }>`
-  font-family: "Firago", sans-serif;
+  font-family: "FiraGo", sans-serif;
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.0625rem;

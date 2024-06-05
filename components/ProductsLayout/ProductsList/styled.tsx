@@ -38,7 +38,7 @@ export const ViewMoreButton = styled.div<{show: boolean}>`
   margin: 30px auto 0px auto;
 
   p {
-    font-family: "FiraGo", sans-serif;
+    font-family: "FiraGO", sans-serif;
     font-weight: 500;
     font-size: 14px;
     line-height: 14px;
