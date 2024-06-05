@@ -10,6 +10,7 @@ import {
   useState,
 } from "react";
 import { useRouter } from "next/router";
+import { useFiltersContext } from "./filters-provider";
 
 interface ProductsContext {
   // filters: Filter[];
@@ -17,7 +18,6 @@ interface ProductsContext {
   products: Product[];
   productsLoading: boolean;
   setPage: Dispatch<SetStateAction<number>>;
-  setLimit: Dispatch<SetStateAction<number>>;
   totalProducts: number;
 }
 
@@ -26,7 +26,6 @@ export const ProductsContext = createContext<ProductsContext>({
   products: [],
   productsLoading: false,
   setPage: () => {},
-  setLimit: () => {},
   totalProducts: 0,
 });
 
@@ -36,9 +35,11 @@ export function ProductsProvider({ children }: PropsWithChildren) {
   const [categoryId, setCategoryId] = useState<number>(21);
   const { products, productsLoading, getProducts, totalProducts } =
     useGetProducts();
+  const { defaultMaxPrice, defaultMinPrice } = useFiltersContext();
 
   const router = useRouter();
-  const { MinPrice, MaxPrice, PriceAsc, NameAsc } = router.query;
+  const { MinPrice, MaxPrice, PriceAsc, NameAsc, SpecificationIds } =
+    router.query;
 
   useEffect(() => {
     if (router.isReady)
@@ -46,10 +47,11 @@ export function ProductsProvider({ children }: PropsWithChildren) {
         Page: page,
         Limit: limit,
         CategoryId: categoryId,
-        MinPrice: Number(MinPrice) || 0,
-        MaxPrice: Number(MaxPrice) || 22020,
-        PriceAsc: PriceAsc || undefined,
-        NameAsc: NameAsc || undefined,
+        MinPrice: Number(MinPrice) || defaultMinPrice,
+        MaxPrice: Number(MaxPrice) || defaultMaxPrice,
+        PriceAsc: PriceAsc ? JSON.parse(PriceAsc as string) : undefined,
+        NameAsc: NameAsc ? JSON.parse(NameAsc as string) : undefined,
+        SpecificationIds: (SpecificationIds as string) || undefined,
       });
   }, [router]);
 
@@ -60,10 +62,11 @@ export function ProductsProvider({ children }: PropsWithChildren) {
           Page: page,
           Limit: limit,
           CategoryId: categoryId,
-          MinPrice: Number(MinPrice) || 0,
-          MaxPrice: Number(MaxPrice) || 22020,
-          PriceAsc: PriceAsc || undefined,
-          NameAsc: NameAsc || undefined,
+          MinPrice: Number(MinPrice) || defaultMinPrice,
+          MaxPrice: Number(MaxPrice) || defaultMaxPrice,
+          PriceAsc: PriceAsc ? JSON.parse(PriceAsc as string) : undefined,
+          NameAsc: NameAsc ? JSON.parse(NameAsc as string) : undefined,
+          SpecificationIds: (SpecificationIds as string) || undefined,
         },
         true
       );
@@ -76,7 +79,6 @@ export function ProductsProvider({ children }: PropsWithChildren) {
         productsLoading,
         setPage,
         limit,
-        setLimit,
         totalProducts,
       }}
     >

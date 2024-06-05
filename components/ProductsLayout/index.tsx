@@ -1,16 +1,16 @@
 import DesktopSort from "./ProductsTopSection";
-import ProductFilters from "./ProductFilters";
+import FiltersSection from "./FiltersSection";
 import ProductsList from "./ProductsList";
-import { Container, Content, FiltersContainer } from "./styled";
+import { Container, Content, SectionDisplay } from "./styled";
 
 export default function ProductsLayout() {
   return (
     <Container>
       <DesktopSort />
       <Content>
-        <FiltersContainer>
-          <ProductFilters />
-        </FiltersContainer>
+        <SectionDisplay>
+          <FiltersSection />
+        </SectionDisplay>
         <ProductsList />
       </Content>
     </Container>

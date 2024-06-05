@@ -3,14 +3,16 @@ import { ThemeProvider, type DefaultTheme } from "styled-components";
 import GlobalStyle from "@/components/globalstyles";
 import { ProductsProvider } from "@/context/products-context";
 import Header from "@/components/Header";
+import { FiltersProvider } from "@/context/filters-provider";
+import "@/assets/fonts/fonts.css";
 
 const theme: DefaultTheme = {
   colors: {
     primary: "#111",
     secondary: "#0070f3",
     blackMain: "#000",
-    orangeMain: "#ec5e2a",
-    orangeSecondary: "#F28F6A",
+    orangeMain: "rgb(236, 94, 42)",
+    orangeSecondary: "#f28f6a",
     black07: "rgba(0, 0, 0, 0.7)",
     gray: "#F2F2F2",
     themeBg: "#FFFFFF",
@@ -19,18 +21,20 @@ const theme: DefaultTheme = {
 };
 
 export default function App({ Component, pageProps }: AppProps) {
-  console.log("FILTERS", pageProps.filters);
-  console.log("min price: ", pageProps.defaultMinPrice);
-  console.log("max price", pageProps.defaultMaxPrice);
-
   return (
     <>
       <ThemeProvider theme={theme}>
-        <ProductsProvider>
-          <GlobalStyle />
-          <Header />
-          <Component {...pageProps} />
-        </ProductsProvider>
+        <FiltersProvider
+          filters={pageProps.filters}
+          defaultMaxPrice={pageProps.defaultMaxPrice}
+          defaultMinPrice={pageProps.defaultMinPrice}
+        >
+          <ProductsProvider>
+            <GlobalStyle />
+            <Header />
+            <Component {...pageProps} />
+          </ProductsProvider>
+        </FiltersProvider>
       </ThemeProvider>
     </>
   );

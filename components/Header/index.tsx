@@ -1,11 +1,15 @@
 import React from "react";
 import {
+  ContactInfo,
+  ContactInfoContainer,
   CustomContainer,
   DesktopContainer,
   HeaderContainer,
   HeaderLogo,
   MobileContainer,
   MobileIcon,
+  PhoneInfo,
+  Info,
 } from "./styled";
 import NavButton from "./NavButton";
 import NavSearch from "./NavSearch";
@@ -15,6 +19,7 @@ import CartIcon from "@/assets/images/shopping-cart.png";
 import ProfileIcon from "@/assets/images/profile-circle.png";
 import MenuIcon from "@/assets/images/menu.png";
 import MobileSearchIcon from "@/assets/images/search-mobile.png";
+import PhoneIcon from "@/assets/images/phone-icon.png";
 
 export enum ButtonEnum {
   DEFAULT = "default",
@@ -24,6 +29,19 @@ export enum ButtonEnum {
 function Header() {
   return (
     <HeaderContainer>
+      <ContactInfo>
+        <ContactInfoContainer>
+          <PhoneInfo>
+            <img src={PhoneIcon.src} alt="phone icon" />
+            <p>*7007 / +995 (32) 2 60 30 60</p>
+          </PhoneInfo>
+          <Info>
+            <p>ონლაინ განვადება</p>
+            <p>ფილიალები</p>
+            <p>ყველა აქცია</p>
+          </Info>
+        </ContactInfoContainer>
+      </ContactInfo>
       <DesktopContainer>
         <HeaderLogo src={ZoomerLogo.src} alt="main logo" />
         <CustomContainer>

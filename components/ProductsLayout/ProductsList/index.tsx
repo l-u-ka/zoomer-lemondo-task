@@ -8,7 +8,8 @@ import {
 } from "./styled";
 
 export default function ProductsList() {
-  const { products, setPage, totalProducts } = useProductsContext();
+  const { products, setPage, totalProducts, productsLoading } =
+    useProductsContext();
   const [shouldShow, setShouldShow] = useState<boolean>(false);
 
   console.log(products.length, totalProducts);
@@ -28,10 +29,23 @@ export default function ProductsList() {
   }
   return (
     <ProductsListContainer>
-      <ProductsListContent>{renderedProducts}</ProductsListContent>
-      <ViewMoreButton show={shouldShow} onClick={loadMore}>
-        <p>მეტის ნახვა</p>
-      </ViewMoreButton>
+      {
+        !productsLoading ? (
+          products.length > 0 ? (
+            <>
+              <ProductsListContent>{renderedProducts}</ProductsListContent>
+              {shouldShow ? (
+                <ViewMoreButton onClick={loadMore}>
+                  <p>მეტის ნახვა</p>
+                </ViewMoreButton>
+              ) : null}
+            </>
+          ) : (
+            <h3>პროდუქტები ვერ მოიძებნა</h3>
+          )
+        ) : null
+        // <h3>იტვირთება...</h3>
+      }
     </ProductsListContainer>
   );
   // return <div>Hello</div>

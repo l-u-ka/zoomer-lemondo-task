@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FilterButton, FilterContainer } from "./styled";
 import FilterModal from "./FilterModal";
-import ProductFilters from "../../ProductFilters";
+import FiltersSection from "../../FiltersSection";
 import FilterIcon from "@/assets/images/setting-5.png";
 export default function FilterMobileModal() {
   const [isFilterModal, setIsFilterModal] = useState(false);
@@ -16,7 +16,7 @@ export default function FilterMobileModal() {
         <p>ფილტრი</p>
       </FilterButton>
       <FilterModal isOpen={isFilterModal} onClose={onClose}>
-        <ProductFilters />
+        <FiltersSection />
       </FilterModal>
     </FilterContainer>
   );

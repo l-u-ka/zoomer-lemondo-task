@@ -1,4 +1,3 @@
-import ProductFilters from "@/components/ProductsLayout/ProductFilters";
 import React, { ReactNode } from "react";
 import CloseX from "@/assets/images/close-icon.png";
 import { CloseButton, ModalBackground, ModalContent } from "./styled";

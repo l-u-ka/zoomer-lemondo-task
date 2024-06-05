@@ -7,6 +7,7 @@ const fadeIn = keyframes`
 
 export const ModalBackground = styled.div`
   position: absolute;
+  height: fit-content;
   top: 0px;
   right: 0px;
   bottom: 0;
@@ -28,5 +29,6 @@ export const ModalContent = styled.div`
 export const CloseButton = styled.img`
   position: absolute;
   top: 1%;
-  right:58%;
+  right: 58%;
+  cursor: pointer;
 `;
