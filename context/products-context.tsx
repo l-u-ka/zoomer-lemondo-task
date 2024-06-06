@@ -42,9 +42,9 @@ export function ProductsProvider({ children }: PropsWithChildren) {
     router.query;
 
   useEffect(() => {
-    if (router.isReady)
+    if (router.isReady) {
       getProducts({
-        Page: page,
+        Page: 1,
         Limit: limit,
         CategoryId: categoryId,
         MinPrice: Number(MinPrice) || defaultMinPrice,
@@ -53,6 +53,8 @@ export function ProductsProvider({ children }: PropsWithChildren) {
         NameAsc: NameAsc ? JSON.parse(NameAsc as string) : undefined,
         SpecificationIds: (SpecificationIds as string) || undefined,
       });
+      //setPage(1);
+    }
   }, [router]);
 
   useEffect(() => {

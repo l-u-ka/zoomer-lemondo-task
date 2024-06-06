@@ -16,7 +16,7 @@ export default function FilterMobileModal() {
         <p>ფილტრი</p>
       </FilterButton>
       <FilterModal isOpen={isFilterModal} onClose={onClose}>
-        <FiltersSection />
+        <FiltersSection onClose={onClose} />
       </FilterModal>
     </FilterContainer>
   );

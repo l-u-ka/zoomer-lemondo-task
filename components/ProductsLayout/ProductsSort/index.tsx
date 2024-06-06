@@ -1,13 +1,29 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import { StyledSelect } from "./styled";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  ArrowIcon,
+  DropdownButton,
+  DropdownContainer,
+  DropdownItem,
+  DropdownMenu,
+} from "./styled";
+
+const options = [
+  { value: "default", label: "დალაგება" },
+  { value: "price-desc", label: "ფასი: კლებადობით" },
+  { value: "price-asc", label: "ფასი: ზრდადობით" },
+  { value: "name-asc", label: "დასახელება: A-Z" },
+  { value: "name-desc", label: "დასახელება: Z-A" },
+];
 
 export default function ProductsSort() {
   const [sortValue, setSortValue] = useState("");
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
-  const setSort = (value: string) => {
+  const handleSelect = (value: string) => {
     // let queryValue = "";
     if (value === "default") {
       delete router.query.NameAsc;
@@ -56,7 +72,24 @@ export default function ProductsSort() {
         { shallow: true }
       );
     }
+    setIsOpen(false);
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     if (router.isReady) {
@@ -75,12 +108,23 @@ export default function ProductsSort() {
   }, [router]);
 
   return (
-    <StyledSelect value={sortValue} onChange={(e) => setSort(e.target.value)}>
-      <option value="default">დალაგება</option>
-      <option value="price-desc">ფასი: კლებადობით</option>
-      <option value="price-asc">ფასი: ზრდადობით</option>
-      <option value="name-asc">დასახელება: A-Z</option>
-      <option value="name-desc">დასახელება: Z-A</option>
-    </StyledSelect>
+    <DropdownContainer ref={dropdownRef}>
+      <DropdownButton onClick={() => setIsOpen(!isOpen)}>
+        {options.find((option) => option.value === sortValue)?.label}
+        <ArrowIcon $isOpen={isOpen} />
+      </DropdownButton>
+      {isOpen && (
+        <DropdownMenu>
+          {options.map((option) => (
+            <DropdownItem
+              key={option.value}
+              onClick={() => handleSelect(option.value)}
+            >
+              {option.label}
+            </DropdownItem>
+          ))}
+        </DropdownMenu>
+      )}
+    </DropdownContainer>
   );
 }

@@ -5,16 +5,17 @@ import {
   FiltersContainer,
   FilterHeader,
   Title,
+  CloseButton,
 } from "./styled";
 import { useRouter } from "next/router";
 import BinIcon from "@/assets/images/bin-icon.png";
 import { useFiltersContext } from "@/context/filters-provider";
 import ProductsFilter from "./ProductsFilter";
+import CloseX from "@/assets/images/close-icon.png";
 
-export default function FiltersSection() {
+export default function FiltersSection({ onClose }: { onClose?: () => void }) {
   const router = useRouter();
   const { defaultMaxPrice, defaultMinPrice, filters } = useFiltersContext();
-  console.log(defaultMaxPrice, defaultMinPrice, filters);
 
   const clearFilters = () => {
     router.replace({
@@ -26,7 +27,11 @@ export default function FiltersSection() {
   return (
     <FiltersContainer>
       <FilterHeader>
-        <Title>ფილტრი</Title>
+        {/* <CloseButton src={CloseX.src} onClick={onClose} /> */}
+        <div className="title-close">
+          <CloseButton src={CloseX.src} onClick={onClose} />
+          <Title>ფილტრი</Title>
+        </div>
         <ClearButton onClick={clearFilters}>
           <img
             src={BinIcon.src}

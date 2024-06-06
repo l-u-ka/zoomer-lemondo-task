@@ -9,6 +9,11 @@ export const FilterHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+
+  .title-close {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export const Title = styled.h2`
@@ -34,4 +39,13 @@ export const ClearButtonText = styled.h2`
   color: #000000;
   opacity: 0.6;
   margin-right: 2px;
+  margin-left: 6px;
+`;
+
+export const CloseButton = styled.img`
+  @media (min-width: 1024px) {
+    display: none;
+  }
+  margin-right: 0.5rem;
+  cursor: pointer;
 `;

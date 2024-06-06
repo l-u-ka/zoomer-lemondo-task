@@ -25,10 +25,3 @@ export const ModalContent = styled.div`
   padding: 20px 25px;
   width: 60%;
 `;
-
-export const CloseButton = styled.img`
-  position: absolute;
-  top: 1%;
-  right: 58%;
-  cursor: pointer;
-`;

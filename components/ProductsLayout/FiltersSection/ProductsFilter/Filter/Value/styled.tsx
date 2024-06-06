@@ -1,3 +1,4 @@
+import TickIcon from "@/assets/images/tick.png";
 import styled from "styled-components";
 
 export const ValueContainer = styled.div`
@@ -8,21 +9,33 @@ export const ValueContainer = styled.div`
     accent-color: ${({ theme }) => theme.colors.orangeMain};
     width: 1.5rem;
     height: 1.5rem;
-    border-radius: 6px;
+    border-radius: 0.5rem;
     outline: none;
-    /* -webkit-box-shadow: 0px 0px 0px 1px rgba(255, 0, 0, 1);
-    -moz-box-shadow: 0px 0px 0px 1px rgba(255, 0, 0, 1);
-    box-shadow: 0px 0px 0px 1px rgba(255, 0, 0, 1); */
-    /* outline: 1px solid #1e5180; */
+    cursor: pointer;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -o-appearance: none;
+
+    &:checked {
+      background-color: ${({ theme }) => theme.colors.orangeMain};
+      outline: none;
+      background-image: url(${TickIcon.src});
+      background-size: auto;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    &:hover {
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    outline: 1px solid ${({ theme }) => theme.colors.blackMain};
   }
 
   label {
     font-family: "FiraGO", sans-serif;
     font-size: 14px;
-    font-weight: 350;
+    font-weight: 400;
     line-height: 20px;
     margin-left: 0.5rem;
-
-    //color: #00000099;
   }
 `;

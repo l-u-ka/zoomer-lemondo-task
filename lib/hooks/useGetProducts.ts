@@ -26,7 +26,6 @@ export function useGetProducts() {
   const [products, setProducts] = useState<Product[]>([]);
   const [productsLoading, setProductsLoading] = useState<boolean>(false);
   const [totalProducts, setTotalProducts] = useState<number>(0);
-  // const [totalProducts, setTotalProducts] = useState<number>(0);
 
   async function getProducts(
     params: GetProductsParams,
@@ -34,11 +33,7 @@ export function useGetProducts() {
   ) {
     try {
       setProductsLoading(true);
-      const response = await axios.get(
-        `https://zoommer-api.lemon.do/v1/Products/v3?`,
-        { params: params }
-      );
-      console.log(response.data);
+      const response = await axios.get("/api/products", { params });
       if (isPagination) {
         setProducts((prev) => [...prev, ...response.data.products]);
       } else {
@@ -51,14 +46,6 @@ export function useGetProducts() {
       setProductsLoading(false);
     }
   }
-
-  // useEffect(() => {
-  //   getProducts({Page: 1, Limit: 12, CategoryId: 21})})
-  // }, []);
-
-  // useEffect(() => {
-  //   getProducts(productProps);
-  // }, Object.values(productProps)); // Only re-run the effect if categoryName changes
 
   return { products, getProducts, productsLoading, totalProducts };
 }

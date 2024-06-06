@@ -5,6 +5,7 @@ import { ProductsProvider } from "@/context/products-context";
 import Header from "@/components/Header";
 import { FiltersProvider } from "@/context/filters-provider";
 import "@/assets/fonts/fonts.css";
+import MobileNavigation from "@/components/MobileNavigation";
 
 const theme: DefaultTheme = {
   colors: {
@@ -33,6 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <GlobalStyle />
             <Header />
             <Component {...pageProps} />
+            <MobileNavigation />
           </ProductsProvider>
         </FiltersProvider>
       </ThemeProvider>

@@ -44,3 +44,12 @@ export const ViewMoreButton = styled.div`
     line-height: 14px;
   }
 `;
+
+export const ProductsNotFound = styled.div`
+  font-family: "FiraGO", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  opacity: 0.8;
+  margin-left: 2rem;
+`;

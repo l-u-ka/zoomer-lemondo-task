@@ -51,6 +51,11 @@ export const Field = styled.div`
   span {
     position: absolute;
     left: 20px;
+
+    font-family: "FiraGO", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
   }
 `;
 
@@ -103,5 +108,4 @@ export const RangeInput = styled.div`
       box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
     }
   }
-  
 `;
