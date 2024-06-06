@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FilterContainer = styled.div``;
+export const FilterMobileContainer = styled.div``;
 export const FilterButton = styled.button`
   width: 160px;
   height: 32px;
@@ -17,7 +17,10 @@ export const FilterButton = styled.button`
     margin-right: 0.5rem;
   }
   p {
-    font-family: "FiraGO", sans-serif;
     font-weight: 500;
+    font-family: "FiraGO", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
   }
 `;

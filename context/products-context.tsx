@@ -13,7 +13,6 @@ import { useRouter } from "next/router";
 import { useFiltersContext } from "./filters-provider";
 
 interface ProductsContext {
-  // filters: Filter[];
   limit: number;
   products: Product[];
   productsLoading: boolean;
@@ -41,6 +40,7 @@ export function ProductsProvider({ children }: PropsWithChildren) {
   const { MinPrice, MaxPrice, PriceAsc, NameAsc, SpecificationIds } =
     router.query;
 
+  // fetch products every time router query change
   useEffect(() => {
     if (router.isReady) {
       getProducts({
@@ -53,10 +53,15 @@ export function ProductsProvider({ children }: PropsWithChildren) {
         NameAsc: NameAsc ? JSON.parse(NameAsc as string) : undefined,
         SpecificationIds: (SpecificationIds as string) || undefined,
       });
-      //setPage(1);
     }
-  }, [router]);
+  }, [router.query]);
 
+  // whenever query changes, set page back to 1
+  useEffect(() => {
+    setPage(1);
+  }, [router.query]);
+
+  // if true is passed to getProducts function as second argument, the previous state will be preserved and new data will be added
   useEffect(() => {
     if (page !== 1)
       getProducts(
@@ -66,8 +71,8 @@ export function ProductsProvider({ children }: PropsWithChildren) {
           CategoryId: categoryId,
           MinPrice: Number(MinPrice) || defaultMinPrice,
           MaxPrice: Number(MaxPrice) || defaultMaxPrice,
-          PriceAsc: PriceAsc ? JSON.parse(PriceAsc as string) : undefined,
-          NameAsc: NameAsc ? JSON.parse(NameAsc as string) : undefined,
+          PriceAsc: PriceAsc ? (PriceAsc as string) : undefined,
+          NameAsc: NameAsc ? (NameAsc as string) : undefined,
           SpecificationIds: (SpecificationIds as string) || undefined,
         },
         true

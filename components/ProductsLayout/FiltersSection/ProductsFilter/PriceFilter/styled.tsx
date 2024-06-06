@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
 
 export const Header = styled.header`
   h3 {
-    font-family: "FiraGO", sans-serif;
     font-size: 14px;
     font-weight: 600;
     line-height: 20px;
@@ -20,12 +19,12 @@ export const PriceInput = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin: 30px 0 35px;
+  margin: 35px 0 0px 0px;
 `;
 
 export const Field = styled.div`
   display: flex;
-  width: 40%;
+  width: 45%;
   height: 45px;
   align-items: center;
   position: relative;
@@ -51,8 +50,6 @@ export const Field = styled.div`
   span {
     position: absolute;
     left: 20px;
-
-    font-family: "FiraGO", sans-serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
@@ -67,13 +64,37 @@ export const Slider = styled.div`
   border-radius: 5px;
 `;
 
-export const Progress = styled.div`
+export const Progress = styled.div<{ $min: number; $max: number }>`
   height: 100%;
-  left: 25%;
-  right: 25%;
+  left: ${({ $min }) => `${($min / 20200) * 100}%`};
+  right: ${({ $max }) => `${100 - ($max / 20200) * 100}%`};
   position: absolute;
   border-radius: 5px;
   background-color: ${({ theme }) => theme.colors.orangeMain};
+
+  &::before,
+  &::after {
+    position: absolute;
+    bottom: -30px;
+    font-size: 12px;
+    color: ${({ theme }) => theme.colors.blackMain};
+    font-family: "FiraGO", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+
+  &::before {
+    content: "${({ $min }) => $min}₾";
+    left: 8px;
+    transform: translateX(-50%);
+  }
+
+  &::after {
+    content: "${({ $max }) => $max}₾";
+    right: 14px;
+    transform: translateX(50%);
+  }
 `;
 
 export const RangeInput = styled.div`

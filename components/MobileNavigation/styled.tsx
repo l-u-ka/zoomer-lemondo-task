@@ -26,7 +26,8 @@ export const FlexContainer = styled.div`
 `;
 
 export const IconText = styled.p`
-  font-family: "FiraGO", sans-serif;
   opacity: 0.6;
-  //color: ${({ theme }) => theme.colors.gray};
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
 `;

@@ -1,6 +1,6 @@
 import { Product } from "@/types/products";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export interface GetProductsParams {
   ShopId?: number;
@@ -8,14 +8,14 @@ export interface GetProductsParams {
   Name?: string;
   Page: number;
   Limit: number;
-  PriceAsc?: boolean;
-  NameAsc?: boolean;
+  PriceAsc?: string | string[];
+  NameAsc?: string | string[];
   Categories?: string;
   TagIds?: string;
   SpecificationIds?: string;
   MinPrice?: number;
   MaxPrice?: number;
-  ProductIds?: string;
+  ProductIds?: string | string[];
   MegaMenuId?: number;
   NotInStock?: boolean;
   CartId?: number;

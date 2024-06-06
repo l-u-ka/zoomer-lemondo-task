@@ -6,7 +6,7 @@ const fadeIn = keyframes`
 `;
 
 export const FilterContainer = styled.div`
-  margin-top: 1rem;
+  margin-top: 2rem;
 `;
 
 export const FilterTitle = styled.div<{ $rotate: boolean }>`
@@ -22,7 +22,6 @@ export const FilterTitle = styled.div<{ $rotate: boolean }>`
     transform: ${({ $rotate }) => (!$rotate ? "rotate(180deg)" : "none")};
   }
   h3 {
-    font-family: "FiraGO", sans-serif;
     font-size: 14px;
     font-weight: 600;
     line-height: 20px;
@@ -39,7 +38,6 @@ export const FilterValues = styled.div<{ $isVisible: boolean }>`
 
 export const MoreValuesButton = styled.div<{ $isVisible: boolean }>`
   display: ${({ $isVisible }) => ($isVisible ? "block" : "none")};
-  font-family: "FiraGO", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 20px;

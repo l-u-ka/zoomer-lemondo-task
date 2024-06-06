@@ -23,58 +23,47 @@ export default function ProductsSort() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
+  // when user selects a value, send it to the url query, first check to delete name query if price query already exists and vice versa.
   const handleSelect = (value: string) => {
-    // let queryValue = "";
-    if (value === "default") {
-      delete router.query.NameAsc;
-      delete router.query.PriceAsc;
+    const updateQuery = (newQuery: Record<string, any>) => {
       router.replace(
         {
-          query: { ...router.query },
+          query: { ...router.query, ...newQuery },
         },
         undefined,
         { shallow: true }
       );
-    } else if (value === "price-asc") {
-      delete router.query.NameAsc;
-      router.replace(
-        {
-          query: { ...router.query, PriceAsc: true },
-        },
-        undefined,
-        { shallow: true }
-      );
-    } else if (value === "price-desc") {
-      delete router.query.NameAsc;
-      router.replace(
-        {
-          query: { ...router.query, PriceAsc: false },
-        },
-        undefined,
-        { shallow: true }
-      );
-    } else if (value === "name-asc") {
-      delete router.query.PriceAsc;
-      router.replace(
-        {
-          query: { ...router.query, NameAsc: true },
-        },
-        undefined,
-        { shallow: true }
-      );
-    } else if (value === "name-desc") {
-      delete router.query.PriceAsc;
-      router.replace(
-        {
-          query: { ...router.query, NameAsc: false },
-        },
-        undefined,
-        { shallow: true }
-      );
+    };
+
+    switch (value) {
+      case "default":
+        delete router.query.NameAsc;
+        delete router.query.PriceAsc;
+        updateQuery({});
+        break;
+      case "price-asc":
+        delete router.query.NameAsc;
+        updateQuery({ PriceAsc: true });
+        break;
+      case "price-desc":
+        delete router.query.NameAsc;
+        updateQuery({ PriceAsc: false });
+        break;
+      case "name-asc":
+        delete router.query.PriceAsc;
+        updateQuery({ NameAsc: true });
+        break;
+      case "name-desc":
+        delete router.query.PriceAsc;
+        updateQuery({ NameAsc: false });
+        break;
+      default:
+        break;
     }
     setIsOpen(false);
   };
 
+  // function to close dropdown when user clicks away
   const handleClickOutside = (event: MouseEvent) => {
     if (
       dropdownRef.current &&
@@ -91,6 +80,7 @@ export default function ProductsSort() {
     };
   }, []);
 
+  // every time query changes, check query value and set value to state from there
   useEffect(() => {
     if (router.isReady) {
       if (router.query.NameAsc === "true") {

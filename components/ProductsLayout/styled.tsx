@@ -21,7 +21,8 @@ export const Content = styled.div`
   width: 100%;
 `;
 
-export const SectionDisplay = styled.div`
+export const FilterSectionDisplay = styled.div`
+  max-width: 350px;
   @media (max-width: 1024px) {
     display: none;
   }

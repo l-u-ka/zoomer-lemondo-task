@@ -16,7 +16,7 @@ export default function PriceFilter() {
   const router = useRouter();
   const [minInput, setMinInput] = useState(defaultMinPrice);
   const [maxInput, setMaxInput] = useState(defaultMaxPrice);
-  const priceGap = 1000;
+  const priceGap = 200;
 
   const handleInputChange = (name: string, value: string) => {
     if (name === "min-input") {
@@ -81,12 +81,7 @@ export default function PriceFilter() {
         <h3>ფასი</h3>
       </Header>
       <Slider>
-        <Progress
-          style={{
-            left: `${(minInput / 10000) * 100}%`,
-            right: `${100 - (maxInput / 10000) * 100}%`,
-          }}
-        />
+        <Progress $min={minInput} $max={maxInput} />
       </Slider>
       <RangeInput>
         <input
@@ -94,9 +89,9 @@ export default function PriceFilter() {
           className="range-min"
           name="range-min-input"
           min="0"
-          max="10000"
+          max="20200"
           value={minInput}
-          step="100"
+          step="200"
           onChange={(e) =>
             handleRangeInputChange(e.target.name, e.target.value)
           }
@@ -109,9 +104,9 @@ export default function PriceFilter() {
           className="range-max"
           name="range-man-input"
           min="0"
-          max="10000"
+          max="20200"
           value={maxInput}
-          step="100"
+          step="200"
           onChange={(e) =>
             handleRangeInputChange(e.target.name, e.target.value)
           }

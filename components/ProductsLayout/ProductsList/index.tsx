@@ -1,5 +1,5 @@
 import { useProductsContext } from "@/context/products-context";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import {
   ProductsListContainer,
@@ -14,7 +14,9 @@ export default function ProductsList() {
   const [shouldShow, setShouldShow] = useState<boolean>(false);
 
   useEffect(() => {
-    if (products && totalProducts && totalProducts > products.length) {
+    console.log("Total Products", totalProducts);
+    console.log("Products length", products.length);
+    if (totalProducts > products?.length + 3) {
       setShouldShow(true);
     } else setShouldShow(false);
   }, [products, totalProducts]);
@@ -28,7 +30,9 @@ export default function ProductsList() {
   }
   return (
     <ProductsListContainer>
-      {products.length > 0 ? (
+      {productsLoading ? (
+        <ProductsNotFound>იტვირთება...</ProductsNotFound>
+      ) : totalProducts > 0 ? (
         <>
           <ProductsListContent>{renderedProducts}</ProductsListContent>
           {shouldShow ? (
@@ -38,9 +42,8 @@ export default function ProductsList() {
           ) : null}
         </>
       ) : (
-        <ProductsNotFound>პროდუქტები ვერ მოიძებნა</ProductsNotFound>
+        <ProductsNotFound>ვერ მოიძებნა</ProductsNotFound>
       )}
     </ProductsListContainer>
   );
-  // return <div>Hello</div>
 }

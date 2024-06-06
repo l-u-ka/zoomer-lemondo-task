@@ -1,6 +1,6 @@
 import { useFiltersContext } from "@/context/filters-provider";
 import React from "react";
-import { AllFiltersContainer } from "./styleds";
+import { AllFiltersContainer } from "./styled";
 import PriceFilter from "./PriceFilter";
 import ProductFilter from "./Filter";
 

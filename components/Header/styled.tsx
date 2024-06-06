@@ -32,12 +32,10 @@ export const PhoneInfo = styled.div`
 
   p {
     margin-left: 0.5rem;
-    font-family: "FiraGO", sans-serif;
     font-size: 12px;
     font-weight: 600;
     line-height: 14px;
     color: white;
-    //text-wrap: nowrap;
   }
 `;
 export const Info = styled.div`
@@ -46,12 +44,12 @@ export const Info = styled.div`
   column-gap: 1.5rem;
 
   p {
-    font-family: "FiraGO", sans-serif;
     font-size: 12px;
     font-weight: 600;
     line-height: 14px;
     color: white;
     opacity: 0.7;
+    cursor: pointer;
   }
 `;
 

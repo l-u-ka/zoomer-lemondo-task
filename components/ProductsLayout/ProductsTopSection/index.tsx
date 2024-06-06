@@ -3,7 +3,6 @@ import {
   CategoryTitle,
   DesktopSection,
   DesktopSortContainer,
-  GoBackContainer,
   GoBackIcon,
   MobileSection,
   SectionContainer,
@@ -11,6 +10,7 @@ import {
   CategoryInfo,
   LayoutOption,
   MobileSecionContent,
+  DesktopTopSection,
 } from "./styled";
 import ProductsSort from "../ProductsSort";
 import ArrowToLeft from "@/assets/images/left-arrow.png";
@@ -23,15 +23,15 @@ export default function ProductsTopSection() {
   return (
     <SectionContainer>
       <DesktopSection>
-        <GoBackContainer>
+        {/* products top sectoin for desktop */}
+        <DesktopTopSection>
           <GoBackIcon src={ArrowToLeft.src} alt="go back icon" />
-          {/* <CategoryTitle>{category}</CategoryTitle> */}
           <CategoryInfo>
             <CategoryIcon src={Apple.src} />
             <CategoryTitle>Apple</CategoryTitle>
           </CategoryInfo>
-        </GoBackContainer>
-        {/* desktop sort */}
+        </DesktopTopSection>
+        {/* sort feature in top section for desktop */}
         <DesktopSortContainer>
           <ProductsSort />
           <LayoutOption src={ColsIcon.src} />
@@ -39,8 +39,9 @@ export default function ProductsTopSection() {
         </DesktopSortContainer>
       </DesktopSection>
       <hr />
-      {/* mobile section here */}
+      {/* products top sectoin for desktop */}
       <MobileSection>
+        {/* sort and filter feature in top section for mobile */}
         <MobileSecionContent>
           <ProductsSort />
           <FilterMobile />

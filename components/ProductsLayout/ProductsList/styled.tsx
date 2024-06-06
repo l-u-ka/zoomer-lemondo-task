@@ -38,7 +38,6 @@ export const ViewMoreButton = styled.div`
   margin: 30px auto 0px auto;
 
   p {
-    font-family: "FiraGO", sans-serif;
     font-weight: 500;
     font-size: 14px;
     line-height: 14px;
@@ -46,10 +45,9 @@ export const ViewMoreButton = styled.div`
 `;
 
 export const ProductsNotFound = styled.div`
-  font-family: "FiraGO", sans-serif;
   font-size: 20px;
   font-weight: 500;
   line-height: 24px;
-  opacity: 0.8;
+  opacity: 0.6;
   margin-left: 2rem;
 `;

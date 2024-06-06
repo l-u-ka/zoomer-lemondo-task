@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FiltersContainer = styled.div`
-  width: 350px;
+  width: 100%;
 `;
 
 export const FilterHeader = styled.div`
@@ -17,7 +17,6 @@ export const FilterHeader = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-family: "FiraGO", sans-serif;
   font-size: 1rem;
   font-weight: 500;
   line-height: 19px;
@@ -32,7 +31,6 @@ export const ClearButton = styled.div`
 `;
 
 export const ClearButtonText = styled.h2`
-  font-family: "FiraGO", sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;

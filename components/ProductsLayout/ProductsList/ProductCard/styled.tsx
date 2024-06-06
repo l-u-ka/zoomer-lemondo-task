@@ -6,7 +6,6 @@ export const ProductContainer = styled.div`
   height: 300px;
   display: flex;
   flex-direction: column;
-  /*justify-content: space-between; */
   position: relative;
   margin: auto;
   @media (min-width: 768px) {
@@ -22,7 +21,6 @@ export const ProductImage = styled.img`
 `;
 
 export const Price = styled.p`
-  font-family: "FiraGO", sans-serif;
   font-weight: 600;
   font-size: 1rem;
   line-height: 19px;
@@ -31,14 +29,13 @@ export const Price = styled.p`
 
 export const PriceContainer = styled.div`
   margin: auto 0px;
-`
+`;
 
 export const SalePriceContainer = styled.div`
   display: flex;
 `;
 
 export const SalePrice = styled.p`
-  font-family: "FiraGO", sans-serif;
   font-weight: 600;
   font-size: 1rem;
   line-height: 19px;
@@ -47,13 +44,10 @@ export const SalePrice = styled.p`
 `;
 
 export const MonthlyPrice = styled.p`
-  font-family: "FiraGO", sans-serif;
   font-weight: 400;
   font-size: 0.5rem;
   line-height: 14px;
-  /* margin: 5px 0; */
   span {
-    font-family: "FiraGO", sans-serif;
     font-weight: 500;
     font-size: 0.75rem;
     line-height: 14px;
@@ -62,7 +56,6 @@ export const MonthlyPrice = styled.p`
 `;
 
 export const OriginalPrice = styled.p`
-  font-family: "FiraGO", sans-serif;
   font-weight: 400;
   font-size: 0.75rem;
   color: ${({ theme }) => theme.colors.black07};
@@ -81,7 +74,6 @@ export const OriginalPrice = styled.p`
 
 export const Title = styled.h3`
   max-width: 10rem;
-  font-family: "FiraGO", sans-serif;
   font-weight: 500;
   font-size: 0.75rem;
   line-height: 18px;
@@ -94,7 +86,7 @@ export const CardButtons = styled.div`
   display: flex;
   justify-content: space-between;
   height: 2.5rem;
-`
+`;
 
 export const SwapButton = styled.div`
   display: flex;
@@ -104,7 +96,7 @@ export const SwapButton = styled.div`
   background-color: ${({ theme }) => theme.colors.gray};
   border-radius: 0.25rem;
   cursor: pointer;
-`
+`;
 
 export const AddToCartButton = styled.div`
   display: flex;
@@ -116,10 +108,9 @@ export const AddToCartButton = styled.div`
   cursor: pointer;
 
   p {
-    font-family: "FiraGO", sans-serif;
     font-weight: 600;
     font-size: 0.75rem;
     line-height: 1.25rem;
     margin-left: 0.5rem;
   }
-`
+`;

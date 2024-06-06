@@ -15,8 +15,8 @@ import CloseX from "@/assets/images/close-icon.png";
 
 export default function FiltersSection({ onClose }: { onClose?: () => void }) {
   const router = useRouter();
-  const { defaultMaxPrice, defaultMinPrice, filters } = useFiltersContext();
 
+  // clear all querys from url
   const clearFilters = () => {
     router.replace({
       pathname: "/",
@@ -27,7 +27,6 @@ export default function FiltersSection({ onClose }: { onClose?: () => void }) {
   return (
     <FiltersContainer>
       <FilterHeader>
-        {/* <CloseButton src={CloseX.src} onClick={onClose} /> */}
         <div className="title-close">
           <CloseButton src={CloseX.src} onClick={onClose} />
           <Title>ფილტრი</Title>

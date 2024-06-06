@@ -10,13 +10,9 @@ export const DesktopSection = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
-
-  /* @media (max-width: 1024px) {
-    display: none;
-  } */
 `;
 
-export const GoBackContainer = styled.div`
+export const DesktopTopSection = styled.div`
   display: inline-flex;
   align-items: center;
   cursor: pointer;
@@ -33,7 +29,6 @@ export const CategoryInfo = styled.div`
 `;
 
 export const CategoryTitle = styled.h2`
-  font-family: "FiraGO", sans-serif;
   font-weight: bold;
   font-size: 1rem;
   line-height: 19px;

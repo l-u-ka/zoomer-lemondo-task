@@ -32,7 +32,6 @@ export const ValueContainer = styled.div`
   }
 
   label {
-    font-family: "FiraGO", sans-serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;

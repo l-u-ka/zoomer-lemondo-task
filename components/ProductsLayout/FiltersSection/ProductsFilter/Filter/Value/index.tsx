@@ -11,49 +11,53 @@ export default function FilterValue({ id, value }: Props) {
   const [checked, setChecked] = useState(false);
   const router = useRouter();
 
+  // hangle checkbox value change, if it is checked, send its id to SpecificationIds to url, if already exists add it to the string with "," like SpecificationIds=1,2,3
+  // if it is unchecked, get SpecificationIds, find the id of the value in that string, remove it and send it back to the url again
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      if (router.query.SpecificationIds) {
-        const addedId = router.query.SpecificationIds;
-        router.replace({
-          query: { ...router.query, SpecificationIds: addedId + "," + id },
-        });
-      } else {
-        router.replace({
-          query: { ...router.query, SpecificationIds: id },
-        });
-      }
-    } else {
+    const updateQuery = (newQuery: Record<string, any>) => {
+      router.replace(
+        {
+          query: { ...router.query, ...newQuery },
+        },
+        undefined,
+        { shallow: true }
+      );
+    };
+
+    const addIdToQuery = () => {
+      const existingIds = router.query.SpecificationIds
+        ? `${router.query.SpecificationIds},`
+        : "";
+      updateQuery({ SpecificationIds: existingIds + id });
+    };
+
+    const removeIdFromQuery = () => {
       if (router.query.SpecificationIds) {
         const idsArr = (router.query.SpecificationIds as string).split(",");
-        const newStr = idsArr
-          .filter((querryId: string) => querryId !== String(id))
+        const newIds = idsArr
+          .filter((queryId: string) => queryId !== String(id))
           .join(",");
-        if (newStr) {
-          router.replace({
-            query: { ...router.query, SpecificationIds: newStr },
-          });
+
+        if (newIds) {
+          updateQuery({ SpecificationIds: newIds });
         } else {
           delete router.query.SpecificationIds;
-          router.replace(
-            {
-              query: { ...router.query },
-            },
-            undefined,
-            { shallow: true }
-          );
+          updateQuery({});
         }
       }
-    }
+    };
+
+    if (e.target.checked) addIdToQuery();
+    else removeIdFromQuery();
   };
 
+  // for every query change, check the SpecificationIds query and set the value checked, if the id of the value is in the query
   useEffect(() => {
     if (router.isReady) {
       if (router.query.SpecificationIds) {
         const idsArr = (router.query.SpecificationIds as string).split(",");
-        if (idsArr.includes(String(id))) {
-          setChecked(true);
-        } else setChecked(false);
+        if (idsArr.includes(String(id))) setChecked(true);
+        else setChecked(false);
       } else setChecked(false);
     }
   }, [router]);

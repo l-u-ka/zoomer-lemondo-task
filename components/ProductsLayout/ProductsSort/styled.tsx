@@ -11,7 +11,6 @@ export const DropdownButton = styled.div`
   width: 100%;
   height: 32px;
   border-radius: 30px;
-  font-family: "FiraGO", sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 14.4px;
@@ -37,7 +36,6 @@ export const DropdownMenu = styled.div`
 `;
 
 export const DropdownItem = styled.div`
-  font-family: "FiraGO", sans-serif;
   font-size: 10px;
   font-weight: 500;
   line-height: 12px;
